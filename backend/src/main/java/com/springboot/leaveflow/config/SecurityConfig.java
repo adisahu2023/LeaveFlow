@@ -30,7 +30,7 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
-    @Value("${app.frontend-url:http://localhost:5173}")
+    @Value("${app.frontend-url:https://leavwf.netlify.app}")
     private String frontendUrl;
 
     @Bean

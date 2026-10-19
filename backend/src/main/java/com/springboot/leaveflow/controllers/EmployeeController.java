@@ -20,7 +20,7 @@ public class EmployeeController {
     @Autowired
     private EmloyeeService leaveService;
 
-    @CrossOrigin("http://localhost:5173")
+
     @PostMapping
     public ResponseEntity<String> addLeave(@RequestBody AddLeaveDto leaveData,Authentication auth){
         AddLeaveDto savedUser=leaveService.addLeave(leaveData,  auth );
@@ -31,7 +31,7 @@ public class EmployeeController {
         return  ResponseEntity.status(HttpStatus.CREATED).body("User created succesfully");
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @GetMapping("/leaves")
     public ResponseEntity<List<LeaveResponseDto>> getEmployeeLeaves(Authentication auth){
          List<LeaveResponseDto> leaves=leaveService.getLeaves(auth);
@@ -41,19 +41,19 @@ public class EmployeeController {
 
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @PutMapping("/leaves/{id}")
     public ResponseEntity<AddLeaveDto> updateLeave(@PathVariable long id ,@RequestBody AddLeaveDto leave,Authentication auth){
          return ResponseEntity.ok(leaveService.updateLeave(id,leave,auth));
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @DeleteMapping("/leave/delete/{id}")
     public ResponseEntity<String> deleteLeave(@PathVariable long id ,Authentication auth){
         leaveService.deleteLeave(id,auth);
         return ResponseEntity.status(HttpStatus.OK).body("Successfully Deleted");
     }
-    @CrossOrigin("http://localhost:5173")
+
     @GetMapping("/profile")
     public ResponseEntity<EmployeeProfileResponse> getEmployeeById(Authentication auth){
         Users employee = leaveService.getEmployeeById(auth);

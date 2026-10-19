@@ -23,13 +23,11 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @CrossOrigin("http://localhost:5173")
     @GetMapping("/profile")
     public ResponseEntity<AdminProfileResponse> getProfile(Authentication auth) {
         return ResponseEntity.ok(adminService.getAdminProfile(auth));
     }
 
-    @CrossOrigin("http://localhost:5173")
     @PutMapping("/profile")
     public ResponseEntity<AdminProfileResponse> updateProfile(
             @RequestBody UpdateAdminProfileRequest request, Authentication auth) {
@@ -37,21 +35,21 @@ public class AdminController {
     }
 
     // users related APIs
-    @CrossOrigin("http://localhost:5173")
+
     @PostMapping("/user")
     public ResponseEntity<String> addUsers(@RequestBody AddUsersDto user){
         adminService.addUser(user);
          return  ResponseEntity.ok("User created ");
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @PutMapping("/user/{id}")
     public ResponseEntity<String> assignRole(@RequestBody UpdateRole role, @PathVariable long id){
         adminService.assignRole(id, role.getRole());
         return  ResponseEntity.ok("Role updated ");
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @PutMapping("/employee/{employeeId}/manager/{managerId}")
     public ResponseEntity<String> assignManager(
             @PathVariable Long employeeId,
@@ -64,13 +62,13 @@ public class AdminController {
         );
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @GetMapping("/users")
     public ResponseEntity<List<AdminUserResponse>> getAllUsers(){
         return ResponseEntity.ok(adminService.getAllUsers());
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @PutMapping("/user/{id}/active")
     public ResponseEntity<String> setActive(@RequestParam Active active, @PathVariable long id) {
         adminService.setActive(active,id);
@@ -79,7 +77,7 @@ public class AdminController {
 
 
     // leaves related APIs
-    @CrossOrigin("http://localhost:5173")
+
     @GetMapping("/leaves")
     public ResponseEntity<List<LeaveResponseDto>> getLeaves(@RequestParam(required = false) Status status){
         return ResponseEntity.ok(adminService.getLeaves(status));

@@ -16,7 +16,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @CrossOrigin("http://localhost:5173")
+
     @PostMapping("/login")
     public ResponseEntity<String> Login(@RequestBody Login logindata){
 
@@ -25,7 +25,6 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    @CrossOrigin("http://localhost:5173")
     public ResponseEntity<String> register(@RequestBody RegisterDto Ruser){
         Users user=new Users();
         user.setName(Ruser.getName());

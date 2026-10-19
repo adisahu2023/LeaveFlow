@@ -23,13 +23,13 @@ public class ManagerController {
     @Autowired
     private LeaveRepository leaveRepository;
 
-    @CrossOrigin("http://localhost:5173")
+
     @GetMapping("/profile")
     public ResponseEntity<ManagerProfileResponse> getProfile(Authentication auth) {
         return ResponseEntity.ok(managerService.getManagerProfile(auth));
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @PutMapping("/profile")
     public ResponseEntity<ManagerProfileResponse> updateProfile(
             @RequestBody UpdateManagerProfileRequest request, Authentication auth) {
@@ -37,7 +37,7 @@ public class ManagerController {
     }
 
 
-    @CrossOrigin("http://localhost:5173")
+
     @GetMapping("/leaves")
     public ResponseEntity<List<LeaveResponseDto>> getAllLeaves(@RequestParam(required = false) Status status , Authentication auth){
 
@@ -67,14 +67,14 @@ public class ManagerController {
 
     }
 
-    @CrossOrigin("http://localhost:5173")
+
     @PutMapping("/approve/{id}")
     public ResponseEntity<String> approved(@PathVariable long id, @RequestBody AddCommentDto adminComment , Authentication auth){
         System.out.println(id);
         return managerService.approvedStatus(id,adminComment.getAdminComment() ,auth);
     }
 
-    @CrossOrigin("http://localhost:5173")
+    
     @PutMapping("/reject/{id}")
     public ResponseEntity<String> reject(@PathVariable long id,@RequestBody AddCommentDto adminComment   ,Authentication auth){
 
