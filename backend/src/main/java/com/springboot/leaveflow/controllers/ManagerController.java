@@ -74,7 +74,7 @@ public class ManagerController {
         return managerService.approvedStatus(id,adminComment.getAdminComment() ,auth);
     }
 
-    
+
     @PutMapping("/reject/{id}")
     public ResponseEntity<String> reject(@PathVariable long id,@RequestBody AddCommentDto adminComment   ,Authentication auth){
 
