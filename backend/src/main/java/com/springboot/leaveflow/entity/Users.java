@@ -37,5 +37,5 @@ public class Users {
     private UserRole role = UserRole.EMPLOYEE;
 
     @Enumerated(EnumType.STRING)
-    private Active active;
+    private Active active=Active.ACTIVE;
 }

@@ -24,7 +24,7 @@ function SignupPage() {
         password: formData.password,
         name: formData.name,
         mobile: Number(formData.mobile),
-        active: formData.active,
+        
       })
       navigate('/login', { state: { signupSuccess: true } })
     } catch (err) {
@@ -53,10 +53,7 @@ function SignupPage() {
           <label htmlFor="signup-mobile">Mobile</label>
           <input id="signup-mobile" name="mobile" type="tel" inputMode="numeric" value={formData.mobile} onChange={handleChange} placeholder="Enter your mobile number" autoComplete="tel" required />
           <label htmlFor="signup-active">Active</label>
-          <select id="signup-active" name="active" value={formData.active} onChange={handleChange} required>
-            <option value="ACTIVE">ACTIVE</option>
-            <option value="DEACTIVE">DEACTIVE</option>
-          </select>
+          
           {error && <p className="signup-error" role="alert">{error}</p>}
           <button type="submit" disabled={submitting}>{submitting ? 'Creating account…' : 'Sign up'}</button>
         </form>
