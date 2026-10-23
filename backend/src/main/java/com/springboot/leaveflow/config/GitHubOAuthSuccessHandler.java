@@ -68,7 +68,7 @@ public class GitHubOAuthSuccessHandler
         System.out.println(token);
 
         response.sendRedirect(
-                "https://leaveflow-a88g.onrender.com/oauth-success#token=" + token
+                "https://leavwf.netlify.app/oauth-success#token=" + token
         );
     }
 }
