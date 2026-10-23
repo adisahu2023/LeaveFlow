@@ -1,11 +1,12 @@
-import { Route, Routes } from 'react-router-dom'
-import HomePage from './HomePage'
-import LoginPage from './components/LoginPage'
-import SignupPage from './components/SignupPage'
-import EmployeeDashboard from './components/EmployeeDashboard'
-import ManagerDashboard from './components/ManagerDashboard'
-import AdminDashboard from './components/AdminDashboard'
-import ProtectedRoute from './components/ProtectedRoute'
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./HomePage";
+import LoginPage from "./components/LoginPage";
+import SignupPage from "./components/SignupPage";
+import EmployeeDashboard from "./components/EmployeeDashboard";
+import ManagerDashboard from "./components/ManagerDashboard";
+import AdminDashboard from "./components/AdminDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import OAuthSuccess from "./components/OAuthSuccess";
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/oauth-success" element={<OAuthSuccess/>} />
       <Route
         path="/employee/dashboard"
         element={
-          <ProtectedRoute allowedRoles={['ROLE_EMPLOYEE']}>
+          <ProtectedRoute allowedRoles={["ROLE_EMPLOYEE"]}>
             <EmployeeDashboard />
           </ProtectedRoute>
         }
@@ -24,7 +26,7 @@ function App() {
       <Route
         path="/manager/dashboard"
         element={
-          <ProtectedRoute allowedRoles={['ROLE_MANAGER']}>
+          <ProtectedRoute allowedRoles={["ROLE_MANAGER"]}>
             <ManagerDashboard />
           </ProtectedRoute>
         }
@@ -32,14 +34,14 @@ function App() {
       <Route
         path="/admin/dashboard"
         element={
-          <ProtectedRoute allowedRoles={['ROLE_ADMIN']}>
+          <ProtectedRoute allowedRoles={["ROLE_ADMIN"]}>
             <AdminDashboard />
           </ProtectedRoute>
         }
       />
       <Route path="*" element={<HomePage />} />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;

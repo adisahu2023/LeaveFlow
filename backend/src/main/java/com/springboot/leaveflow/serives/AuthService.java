@@ -1,5 +1,6 @@
 package com.springboot.leaveflow.serives;
 
+import com.springboot.leaveflow.entity.Active;
 import com.springboot.leaveflow.entity.Login;
 import com.springboot.leaveflow.entity.Users;
 import com.springboot.leaveflow.repository.UserRepository;
@@ -46,6 +47,11 @@ public class AuthService {
 
     public String login(Login login){
         System.out.println("Login service entered");
+        Users user =userRepository.findByUsername(login.getUsername()).orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST,"User has not registere"));
+        if(!(user.getActive()!=Active.ACTIVE)){
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"You are Deactivated");
+
+        }
         System.out.println(
                 passwordEncoder.encode("Admin@123")
         );

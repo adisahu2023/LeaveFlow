@@ -17,7 +17,7 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secret;
 
-    private final long expirationTime = 1000 * 60 * 60; // 1 hour
+    private final long expirationTime = 1000 * 60 * 15; // 1 hour
 
     // Generate the signing key
     private SecretKey getSigningKey() {

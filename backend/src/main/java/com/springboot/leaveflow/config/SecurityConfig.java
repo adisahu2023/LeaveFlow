@@ -29,6 +29,8 @@ public class SecurityConfig {
 
     @Autowired
     private JwtFilter jwtFilter;
+    @Autowired
+    private GitHubOAuthSuccessHandler gitHubOAuthSuccessHandler;
 
     @Value("${app.frontend-url:https://leavwf.netlify.app}")
     private String frontendUrl;
@@ -43,12 +45,15 @@ public class SecurityConfig {
                 )
 
                 .csrf(csrf -> csrf.disable())
+                .formLogin(form -> form.disable())
+                .httpBasic(basic -> basic.disable())
 
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS
                         )
                 )
+
 
                 .authorizeHttpRequests(auth -> auth
 
@@ -64,6 +69,11 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
+
+                )
+
+                .oauth2Login(oauth2 -> oauth2
+                        .successHandler(gitHubOAuthSuccessHandler)
                 )
 
                 .addFilterBefore(
