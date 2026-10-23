@@ -1,6 +1,7 @@
 package com.springboot.leaveflow.config;
 
 import com.springboot.leaveflow.entity.Active;
+import com.springboot.leaveflow.entity.UserRole;
 import com.springboot.leaveflow.entity.Users;
 import com.springboot.leaveflow.repository.UserRepository;
 import com.springboot.leaveflow.serives.jwtservices.JwtService;
@@ -37,10 +38,11 @@ public class OAuthSuccessHandler
             Authentication authentication)
             throws IOException, ServletException {
 
-        OAuth2User githubUser =
+        OAuth2User oauthUser =
                 (OAuth2User) authentication.getPrincipal();
 
-        String email = githubUser.getAttribute("email");
+        String email = oauthUser.getAttribute("email");
+        String name = oauthUser.getAttribute("name");
 
         if (email == null || email.isBlank()) {
             response.sendError(401, "GitHub email is unavailable.");
@@ -48,7 +50,18 @@ public class OAuthSuccessHandler
         }
 
         Users user = userRepository.findByUsername(email)
-                .orElse(null);
+                .orElseGet(() -> {
+                    Users newUser = new Users();
+
+                    newUser.setUsername(email);
+                    newUser.setName(name);
+                    newUser.setRole(UserRole.EMPLOYEE);
+                    newUser.setActive(Active.ACTIVE);
+
+
+
+                    return userRepository.save(newUser);
+                });
 
         if (user == null) {
             response.sendError(
