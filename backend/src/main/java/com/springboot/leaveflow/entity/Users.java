@@ -29,7 +29,7 @@ public class Users {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(name = "mobile_no",nullable=false)
+    @Column(name = "mobile_no")
     private long mobile;
 
     @Enumerated(EnumType.STRING)
@@ -38,4 +38,11 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     private Active active=Active.ACTIVE;
+
+    @PrePersist()
+    public void setdefaultPass(){
+        if(password==null || password.isBlank()){
+            password="Pass@123";
+        }
+    }
 }
