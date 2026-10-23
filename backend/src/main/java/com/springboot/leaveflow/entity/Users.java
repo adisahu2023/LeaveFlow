@@ -19,7 +19,7 @@ public class Users {
     private String username;
 
 
-    @Column(nullable = false)
+    @Column()
     private String password;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -29,7 +29,7 @@ public class Users {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(name = "mobile_no")
+    @Column(name = "mobile_no",nullable=false)
     private long mobile;
 
     @Enumerated(EnumType.STRING)
@@ -39,10 +39,5 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private Active active=Active.ACTIVE;
 
-    @PrePersist()
-    public void setdefaultPass(){
-        if(password==null || password.isBlank()){
-            password="Pass@123";
-        }
-    }
+
 }
