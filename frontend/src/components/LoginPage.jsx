@@ -67,11 +67,11 @@ function LoginPage() {
   }
 
   const handleGitHubLogin = () => {
-    window.location.href = "https://leaveflow-a88g.onrender.com/login/oauth2/code/github";
+    window.location.href = `${ import.meta.env.VITE_API_URL}/login/oauth2/code/github`;
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+    
   };
 
   return (
