@@ -32,7 +32,7 @@ public class SecurityConfig {
     @Autowired
     private OAuthSuccessHandler OAuthSuccessHandler;
 
-    @Value("${app.frontend-url:https://leavwf.netlify.app}")
+    @Value("${app.frontend-url}")
     private String frontendUrl;
 
     @Bean

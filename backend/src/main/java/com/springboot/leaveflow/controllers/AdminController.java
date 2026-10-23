@@ -84,6 +84,12 @@ public class AdminController {
 
     }
 
+    @PostMapping("/password")
+    public ResponseEntity<String> setEmployeepassword(@RequestParam String username , @RequestParam String pass){
+        adminService.setEmployeePassword(username,pass);
+        return ResponseEntity.ok("Password updated...");
+    }
+
 
 
 

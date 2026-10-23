@@ -147,5 +147,14 @@ public class AdminService {
         return new AdminProfileResponse(user.getName(), user.getUsername(), user.getMobile(), user.getRole());
     }
 
+    @Transactional
+    public void setEmployeePassword(String username,String password){
+        Users user=userRepository.findByUsername(username).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST,"Employee does not found"));
+
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+
+    }
+
 
 }

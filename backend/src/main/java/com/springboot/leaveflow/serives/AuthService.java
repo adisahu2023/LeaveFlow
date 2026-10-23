@@ -48,7 +48,7 @@ public class AuthService {
     public String login(Login login){
         System.out.println("Login service entered");
         Users user =userRepository.findByUsername(login.getUsername()).orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST,"User has not registere"));
-        if(!(user.getActive()!=Active.ACTIVE)){
+        if((user.getActive()==Active.DEACTIVE)){
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"You are Deactivated");
 
         }

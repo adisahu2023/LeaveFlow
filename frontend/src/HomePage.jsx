@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const requests = [
   {
@@ -29,6 +31,24 @@ const requests = [
 ];
 
 function DashboardPreview() {
+  const navigate=useNavigate()
+  
+  useEffect(()=>{
+
+    const token=localStorage.getItem("token")
+    if(token){
+      const decodedToken=jwtDecode(token)
+      if(decodedToken.role=="ROLE_EMPLOYEE")
+      navigate("/employee/dashboard")
+
+      else if(decodedToken.role=="ROLE_MANAGER")
+      navigate("/manager/dashboard")
+    
+     else if(decodedToken.role=="ROLE_ADMIN")
+      navigate("/admin/dashboard")
+    }
+  },[])
+  
   return (
     <div
       className="preview-wrap"
