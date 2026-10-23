@@ -17,13 +17,13 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class GitHubOAuthSuccessHandler
+public class OAuthSuccessHandler
         implements AuthenticationSuccessHandler {
 
     private final UserRepository userRepository;
     private final JwtService jwtService;
 
-    public GitHubOAuthSuccessHandler(
+    public OAuthSuccessHandler(
             UserRepository userRepository,
             JwtService jwtService) {
         this.userRepository = userRepository;

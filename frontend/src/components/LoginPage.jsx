@@ -71,7 +71,7 @@ function LoginPage() {
   };
 
   const handleGoogleLogin = () => {
-    
+      window.location.href = `${ import.meta.env.VITE_API_URL}/login/oauth2/code/google`;
   };
 
   return (

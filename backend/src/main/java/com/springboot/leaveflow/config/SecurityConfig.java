@@ -30,7 +30,7 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
     @Autowired
-    private GitHubOAuthSuccessHandler gitHubOAuthSuccessHandler;
+    private OAuthSuccessHandler OAuthSuccessHandler;
 
     @Value("${app.frontend-url:https://leavwf.netlify.app}")
     private String frontendUrl;
@@ -73,7 +73,7 @@ public class SecurityConfig {
                 )
 
                 .oauth2Login(oauth2 -> oauth2
-                        .successHandler(gitHubOAuthSuccessHandler)
+                        .successHandler(OAuthSuccessHandler)
                 )
 
                 .addFilterBefore(
