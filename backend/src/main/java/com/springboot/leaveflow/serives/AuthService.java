@@ -41,7 +41,6 @@ public class AuthService {
                     );
                 });
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user.getPassword());
         return userRepository.save(user);
     }
 
@@ -52,9 +51,8 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"You are Deactivated");
 
         }
-        System.out.println(
-                passwordEncoder.encode("Admin@123")
-        );
+
+
        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         login.getUsername(),

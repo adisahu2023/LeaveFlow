@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 
 function SignupPage() {
   const navigate = useNavigate()
@@ -19,13 +20,17 @@ function SignupPage() {
     setSubmitting(true)
 
     try {
-      await axios.post('/auth/register', {
+      const response =await axios.post('/auth/register', {
         username: formData.email,
         password: formData.password,
         name: formData.name,
         mobile: Number(formData.mobile),
+      
         
       })
+     
+      const token=response.data;
+      localStorage.setItem("token",token)
       navigate('/login', { state: { signupSuccess: true } })
     } catch (err) {
       console.log(err.response)
@@ -52,7 +57,7 @@ function SignupPage() {
           <input id="signup-name" name="name" type="text" value={formData.name} onChange={handleChange} placeholder="Enter your name" autoComplete="name" required />
           <label htmlFor="signup-mobile">Mobile</label>
           <input id="signup-mobile" name="mobile" type="tel" inputMode="numeric" value={formData.mobile} onChange={handleChange} placeholder="Enter your mobile number" autoComplete="tel" required />
-          <label htmlFor="signup-active">Active</label>
+          
           
           {error && <p className="signup-error" role="alert">{error}</p>}
           <button type="submit" disabled={submitting}>{submitting ? 'Creating account…' : 'Sign up'}</button>

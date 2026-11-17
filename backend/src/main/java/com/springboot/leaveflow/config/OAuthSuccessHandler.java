@@ -79,7 +79,7 @@ public class OAuthSuccessHandler
                 user.getUsername(),
                 "ROLE_" + user.getRole().name()
         );
-        System.out.println(token);
+
 
         response.sendRedirect(
                 "https://leavwf.netlify.app/oauth-success#token=" + token

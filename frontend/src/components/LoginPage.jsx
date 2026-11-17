@@ -67,11 +67,11 @@ function LoginPage() {
   }
 
   const handleGitHubLogin = () => {
-    window.location.href = `${ import.meta.env.VITE_API_URL}/login/oauth2/code/github`;
+    window.location.href = `${ import.meta.env.VITE_API_URL}/oauth2/authorization/github`;
   };
 
   const handleGoogleLogin = () => {
-      window.location.href = `${ import.meta.env.VITE_API_URL}/login/oauth2/code/google`;
+      window.location.href = `${ import.meta.env.VITE_API_URL}/oauth2/authorization/google`;
   };
 
   return (

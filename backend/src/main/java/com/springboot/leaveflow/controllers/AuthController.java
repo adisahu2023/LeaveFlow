@@ -32,6 +32,10 @@ public class AuthController {
         user.setMobile(Ruser.getMobile());
         user.setPassword(Ruser.getPassword());
         authService.register(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Created succesfully");
+        Login logindata=new Login();
+        logindata.setUsername(user.getUsername());
+        logindata.setPassword(Ruser .getPassword());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body( authService.login(logindata));
     }
 }

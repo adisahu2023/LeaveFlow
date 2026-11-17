@@ -22,9 +22,10 @@ function OAuthSuccess() {
       } else if (role == "ROLE_ADMIN") {
         navigate("/admin/dashboard");
       }
-    } else {
-      navigate("/login");
-    }
+    }  else {
+        localStorage.removeItem("token");
+        alert("This account does not have access to a dashboard in this app.");
+      }
   }, []);
 
   return <h2>Login successful...</h2>;

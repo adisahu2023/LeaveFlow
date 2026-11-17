@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 @RequestMapping("/manager")
-public class ManagerService {
+public class  ManagerService {
     @Autowired
     private LeaveRepository leaveRepository;
     @Autowired
