@@ -28,13 +28,16 @@ function SignupPage() {
       
         
       })
-     
+
       const token=response.data;
+  
+      console.log(response)
       localStorage.setItem("token",token)
       navigate('/login', { state: { signupSuccess: true } })
     } catch (err) {
-      console.log(err.response)
-      setError(err.response?.data?.message || 'Unable to create your account. Please try again.')
+      
+      
+      setError(err.response?.data || 'Unable to create your account. Please try again.')
     } finally {
       setSubmitting(false)
     }

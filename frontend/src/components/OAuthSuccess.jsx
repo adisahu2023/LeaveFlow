@@ -12,7 +12,7 @@ function OAuthSuccess() {
         
       localStorage.setItem("token", token);
       const decodedToken = jwtDecode(token);
-      console.log("token",decodedToken)
+      
       const role = decodedToken.role;
 
       if (role == "ROLE_EMPLOYEE") {

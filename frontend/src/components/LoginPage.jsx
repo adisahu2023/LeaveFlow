@@ -10,6 +10,7 @@ function LoginPage() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    
 
     if (token) {
       const decodedToken = jwtDecode(token);
@@ -43,6 +44,7 @@ function LoginPage() {
     console.log(logData);
     try {
       const response = await axios.post("/auth/login", logData);
+      
       const token = response.data;
       const decodedToken = jwtDecode(token);
       localStorage.setItem("token", token);
